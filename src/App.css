@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+}
+
+html {
+  display: flex;
+  width: 95%;
+  justify-content: center;
+  justify-items: center;
+}
+
+header {
+  text-align: center;
+}
+
+img {
+  max-width: 90%;
+}
+
+li {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
+  max-width: 20%;
+  border: solid 3px black;
+  border-radius: 15px;
+  padding: 10px;
+  height: 325px;
+  max-width: 20%;
+  float: left;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+}
