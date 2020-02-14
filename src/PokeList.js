@@ -3,9 +3,9 @@ import PokeItem from './PokeItem.js';
 
 export default class PokeList extends Component {
     render() {
-        const elementsArray = this.props.pokeData.map((pokemon) => {
+        const elementsArray = this.props.searchedPokemon.map((pokemon) => {
             return (
-                <PokeItem pokeData={pokemon} />
+                <PokeItem searchedPokemon={pokemon} key={pokemon._id} />
             );
         });
         return(

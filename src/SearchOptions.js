@@ -4,25 +4,24 @@ export default class SearchOptions extends Component {
     componentDidMount() {
         this.updateControls();
 
-        window.addEventListener("hashchange", () => {
-            this.updateControls();
+        window.addEventListener("hashchange", () => { this.updateControls();
         })
     }
 
     state = {
-        // checkedRadio: [{ name: "movie" }, { name: "series" }, { name: "episode" }],searchInput: ""
+        searchInput: '',
+        // typeInput: ''
     }
 
     updateControls() {
         const queryString = window.location.hash.slice(1);
         const searchParams = new URLSearchParams(queryString);
-        // const type = searchParams.get('type');
-    }
 
-    this.ListeningStateChangedEvent({
-        // searchInput: searchParams.get('s') || '',
-        // checkedRadio: type;
-    })
+        this.setState({
+            searchInput: searchParams.get('pokemon') || '',
+            // typeInput: searchParams.get('type') || ''
+        })
+    }
 
     handleSubmit = event => {
         const form = document.querySelector('form');
@@ -32,8 +31,8 @@ export default class SearchOptions extends Component {
         const queryString = window.location.hash.slice(1);
         const searchParams = new URLSearchParams(queryString);
 
-        searchParams.set('type', formData.get('type'));
-        searchParams.set('s', formData.get('search'));
+        // searchParams.set('pokemon', formData.get('pokemon'));
+        searchParams.set('pokemon', formData.get('search'));
         searchParams.set('page', 1);
 
         window.location.hash = searchParams.toString();
@@ -42,54 +41,14 @@ export default class SearchOptions extends Component {
     render() {
         return (
             <form className="searchOptions" onSubmit={this.handleSubmit}>
-                <label for="searchOptions">Search:</label>
+                <label htmlFor="searchOptions">Search by name:</label>
                 <p>
                     <input id="search" name="search" onChange={e => this.setState({ searchInput: e.target.value })} value={this.state.searchInput} />
                 </p>
-                {/* add in fieldset, can use model below */}
+                <p>
+                    <button>Search</button>
+                </p>
             </form>
         )
     }
 }
-
-// export default class SearchOptions extends Component {
-//         <fieldset className="type">
-//           <label>
-//             <input
-//               type="radio"
-//               name="type"
-//               value="movie"
-//               onClick={() => this.setState({ checkedRadio: "movie" })}
-//               checked={this.state.checkedRadio === "movie"}
-//             />
-//             Movie
-//           </label>
-//           <label>
-//             <input
-//               type="radio"
-//               name="type"
-//               value="series"
-//               onClick={() => this.setState({ checkedRadio: "series" })}
-//               checked={this.state.checkedRadio === "series"}
-//             />
-//             Series
-//           </label>
-//           <label>
-//             <input
-//               type="radio"
-//               name="type"
-//               value="episode"
-//               onClick={() => this.setState({ checkedRadio: "episode" })}
-//               checked={this.state.checkedRadio === "episode"}
-//             />
-//             Episode
-//           </label>
-//         </fieldset>
-
-//         <p>
-//           <button>Search 🔍</button>
-//         </p>
-//       </form>
-//     );
-//   }
-// }
